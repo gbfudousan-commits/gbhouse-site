@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>聯絡我們｜GB商事合同会社</title>
 <meta name="description" content="GB商事合同会社へのお問い合わせ。LINE、メール、お電話でお気軽にご相談ください。">
-<link rel="icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png?v=2">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=2">
+<link rel="icon" href="assets/favicon-v2.ico?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -81,7 +84,7 @@
         <p style="margin-bottom:26px;"><span data-zh>送出後將開啟您的電子郵件軟體，內容會自動帶入，確認後寄出即可。</span><span data-ja>送信するとメールソフトが起動し、内容が自動的に入力されます。ご確認の上、送信してください。</span></p>
 
         <form id="contact-form">
-          <input type="hidden" name="access_key" value="50ea8c11-7e92-4a2b-82e0-f650a8eee771">
+          <input type="hidden" name="access_key" value="PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE">
           <input type="hidden" name="subject" value="網站諮詢通知｜GB商事合同会社">
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
@@ -100,21 +103,22 @@
             <div class="field">
               <label for="purpose"><span data-zh>需求類型</span><span data-ja>ご検討の目的</span></label>
               <select id="purpose" name="purpose">
-                <option data-zh="自住" data-ja="自住">自住／自住</option>
-                <option data-zh="投資" data-ja="投資">投資／投資</option>
-                <option data-zh="未定" data-ja="未定">未定／未定</option>
+                <option value="自住">自住</option>
+                <option value="投資">投資</option>
+                <option value="未定">未定</option>
               </select>
             </div>
             <div class="field">
               <label for="budget"><span data-zh>預算</span><span data-ja>ご予算</span></label>
               <select id="budget" name="budget">
-                <option data-zh="2000萬日圓以下" data-ja="2000万円以下">2000萬日圓以下／2000万円以下</option>
-                <option data-zh="2000〜4000萬日圓" data-ja="2000〜4000万円">2000〜4000萬日圓／2000〜4000万円</option>
-                <option data-zh="4000〜6000萬日圓" data-ja="4000〜6000万円">4000〜6000萬日圓／4000〜6000万円</option>
-                <option data-zh="6000〜8000萬日圓" data-ja="6000〜8000万円">6000〜8000萬日圓／6000〜8000万円</option>
-                <option data-zh="8000〜10000萬日圓" data-ja="8000〜10000万円">8000〜10000萬日圓／8000〜10000万円</option>
-                <option data-zh="10000萬日圓以上" data-ja="10000万円以上">10000萬日圓以上／10000万円以上</option>
-                <option data-zh="尚未確定" data-ja="未定">尚未確定／未定</option>
+                <option value="1000萬日圓以下">1000萬日圓以下</option>
+                <option value="1000〜2000萬日圓">1000〜2000萬日圓</option>
+                <option value="2000〜4000萬日圓">2000〜4000萬日圓</option>
+                <option value="4000〜6000萬日圓">4000〜6000萬日圓</option>
+                <option value="6000〜8000萬日圓">6000〜8000萬日圓</option>
+                <option value="8000〜10000萬日圓">8000〜10000萬日圓</option>
+                <option value="10000萬日圓以上">10000萬日圓以上</option>
+                <option value="尚未確定">尚未確定</option>
               </select>
             </div>
           </div>
@@ -122,10 +126,10 @@
           <div class="field">
             <label for="topic"><span data-zh>諮詢類別</span><span data-ja>お問い合わせ種別</span></label>
             <select id="topic" name="topic">
-              <option data-zh="購屋諮詢" data-ja="購入のご相談">購屋諮詢／購入のご相談</option>
-              <option data-zh="租賃・物件管理" data-ja="賃貸・物件管理">租賃・物件管理／賃貸・物件管理</option>
-              <option data-zh="移住規劃" data-ja="移住プラン">移住規劃／移住プラン</option>
-              <option data-zh="其他" data-ja="その他">其他／その他</option>
+              <option value="購屋諮詢">購屋諮詢</option>
+              <option value="租賃・物件管理">租賃、物件管理</option>
+              <option value="移住規劃">移住規劃</option>
+              <option value="其他">其他</option>
             </select>
           </div>
           <div class="field">
