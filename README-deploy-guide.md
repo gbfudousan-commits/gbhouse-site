@@ -62,7 +62,62 @@
 
 ---
 
+## 加裝 Chatbase AI 客服機器人
+
+✅ **已完成**：機器人已經設定好、嵌入程式碼也已經換成真正的版本（六個頁面都已更新），
+上傳這次的 zip 之後，網站右下角就會出現對話氣泡，不需要再做任何設定。
+
+如果之後想調整機器人怎麼回答，直接登入 https://www.chatbase.co，找到「Instructions」修改文字、
+按「Save changes」就好，**不需要**再回來改網站程式碼。
+
+（下面留著原本的申請流程紀錄，供之後參考／複製到別的機器人使用）
+
+**申請與設定步驟：**
+
+1. 到 https://www.chatbase.co 註冊一個免費帳號
+2. 進入後點「New Agent」（或類似的新增機器人按鈕）
+3. 到「資料來源 / Data Sources」，選擇貼上網址（Website / Link），把您的網站網址填入
+   （例如 `https://gbfudousan-commits.github.io/gbhouse-site/`），讓它自動讀取全站內容；
+   也可以額外把常見問題頁面的內容貼進去，訓練得更準確
+4. 到「Instructions / Persona」設定機器人的說話方式，建議寫類似：
+   > 你是GB商事合同会社的中文客服助理，親切、專業，主要協助大阪不動產買賣、租賃、
+   > 移住諮詢相關問題。全程使用繁體中文回覆。遇到你不確定或涉及具體合約、價格的問題，
+   > 請引導客人透過LINE（@381wtasq）或聯絡表單與真人聯繫，不要自行承諾價格或交易細節。
+5. 到「外觀 / Appearance」可以上傳 `assets/logo.png` 當機器人頭像，顏色可以設定成
+   `#0894C7`（跟網站主色一致）
+6. 設定完成後，點「Embed on site」→「Make Public」，會出現一段程式碼，裡面有一組
+   `chatbotId`（一長串英數字）
+7. 打開這個資料夾裡的任一個 html 檔（`index.html`、`about.html`…），找到最下面這一段：
+   ```html
+   <script>
+     window.embeddedChatbotConfig = {
+       chatbotId: "PASTE_YOUR_CHATBASE_ID_HERE",
+       domain: "www.chatbase.co"
+     }
+   </script>
+   <script
+     src="https://www.chatbase.co/embed.min.js"
+     chatbotId="PASTE_YOUR_CHATBASE_ID_HERE"
+     domain="www.chatbase.co"
+     defer>
+   </script>
+   ```
+   把兩處 `PASTE_YOUR_CHATBASE_ID_HERE` 都換成您拿到的 chatbotId
+8. **這六個頁面都要各自改一次**（`index.html`、`about.html`、`properties.html`、
+   `immigration.html`、`faq.html`、`contact.html`），這樣不管訪客從哪一頁進來都會看到機器人
+9. 存檔後重新上傳到 GitHub，等1-2分鐘生效，右下角應該就會出現一個對話氣泡圖示
+
+> 提醒：Chatbase 免費方案有訊息則數上限，用量大的話需要升級付費方案，實際額度與價格
+> 請以您登入後看到的當下方案為準（這類服務更新蠻頻繁的）。如果某天想拿掉機器人，
+> 把這段程式碼刪掉、或把 chatbotId 留空就不會顯示。
+
+---
+
 ## 這一版更新了什麼
+
+0. **Chatbase AI 客服機器人（佔位程式碼）**：六個頁面都已埋好接入程式碼，申請完帳號後只要貼上 ID，詳見上方「加裝 Chatbase AI 客服機器人」。
+
+
 
 1. **favicon 徹底重做**：換成獨立的 PNG 圖示（`favicon-32.png`、`favicon-16.png`）加上新檔名的 `.ico`，並在網址後面加了 `?v=2` 版本號，強迫瀏覽器抓取新的檔案，不會再抓到舊的快取版本。
    - **重要提醒**：您圖示本身是「開放式」的房屋圖案（中間鏤空），所以放在瀏覽器分頁那種白底環境時，圖案周圍本來就會透出分頁的白色背景——這是所有非滿版圖示的正常現象（例如空心的房子、勾勾、愛心圖示都會這樣），不是背景沒去乾淨。真正的白色「方塊」背景才是需要修的問題，這次已經確認整張圖是透明的。
