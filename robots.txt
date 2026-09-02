@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gbfudousan-commits.github.io/gbhouse-site/sitemap.xml
