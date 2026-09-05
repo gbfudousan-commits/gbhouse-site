@@ -28,6 +28,8 @@
         <li><a href="about.html"><span data-zh>公司介紹</span><span data-ja>会社概要</span></a></li>
         <li><a href="properties.html"><span data-zh>物件情報</span><span data-ja>物件情報</span></a></li>
         <li><a href="immigration.html"><span data-zh>日本移民</span><span data-ja>日本移住</span></a></li>
+        <li><a href="car-rental.html"><span data-zh>租車服務</span><span data-ja>レンタカー</span></a></li>
+        <li><a href="charter-bus.html"><span data-zh>包車服務</span><span data-ja>貸切バス</span></a></li>
         <li><a href="faq.html"><span data-zh>常見問題</span><span data-ja>よくある質問</span></a></li>
         <li><a href="contact.html" aria-current="page"><span data-zh>聯絡我們</span><span data-ja>お問い合わせ</span></a></li>
       </ul>
@@ -99,7 +101,19 @@
             </div>
           </div>
 
-          <div class="field-row">
+          <div class="field">
+            <label for="topic"><span data-zh>諮詢類別</span><span data-ja>お問い合わせ種別</span></label>
+            <select id="topic" name="topic">
+              <option value="購屋諮詢">購屋諮詢</option>
+              <option value="租賃・物件管理">租賃、物件管理</option>
+              <option value="移住規劃">移住規劃</option>
+              <option value="租車服務">租車服務</option>
+              <option value="包車諮詢">包車諮詢</option>
+              <option value="其他">其他</option>
+            </select>
+          </div>
+
+          <div class="field-row" id="realestate-fields">
             <div class="field">
               <label for="purpose"><span data-zh>需求類型</span><span data-ja>ご検討の目的</span></label>
               <select id="purpose" name="purpose">
@@ -123,14 +137,234 @@
             </div>
           </div>
 
-          <div class="field">
-            <label for="topic"><span data-zh>諮詢類別</span><span data-ja>お問い合わせ種別</span></label>
-            <select id="topic" name="topic">
-              <option value="購屋諮詢">購屋諮詢</option>
-              <option value="租賃・物件管理">租賃、物件管理</option>
-              <option value="移住規劃">移住規劃</option>
-              <option value="其他">其他</option>
-            </select>
+          <div class="field-row" id="rental-fields" style="display:none;">
+            <div class="field">
+              <label for="pickup_date"><span data-zh>借車日期時間</span><span data-ja>貸出日時</span></label>
+              <div class="subrow">
+                <input type="date" id="pickup_date" name="pickup_date" disabled>
+                <select id="pickup_time" name="pickup_time" disabled>
+                <option value="00:00">上午 12:00</option>
+                <option value="00:30">上午 12:30</option>
+                <option value="01:00">上午 1:00</option>
+                <option value="01:30">上午 1:30</option>
+                <option value="02:00">上午 2:00</option>
+                <option value="02:30">上午 2:30</option>
+                <option value="03:00">上午 3:00</option>
+                <option value="03:30">上午 3:30</option>
+                <option value="04:00">上午 4:00</option>
+                <option value="04:30">上午 4:30</option>
+                <option value="05:00">上午 5:00</option>
+                <option value="05:30">上午 5:30</option>
+                <option value="06:00">上午 6:00</option>
+                <option value="06:30">上午 6:30</option>
+                <option value="07:00">上午 7:00</option>
+                <option value="07:30">上午 7:30</option>
+                <option value="08:00">上午 8:00</option>
+                <option value="08:30">上午 8:30</option>
+                <option value="09:00">上午 9:00</option>
+                <option value="09:30">上午 9:30</option>
+                <option value="10:00">上午 10:00</option>
+                <option value="10:30">上午 10:30</option>
+                <option value="11:00">上午 11:00</option>
+                <option value="11:30">上午 11:30</option>
+                <option value="12:00">下午 12:00</option>
+                <option value="12:30">下午 12:30</option>
+                <option value="13:00">下午 1:00</option>
+                <option value="13:30">下午 1:30</option>
+                <option value="14:00">下午 2:00</option>
+                <option value="14:30">下午 2:30</option>
+                <option value="15:00">下午 3:00</option>
+                <option value="15:30">下午 3:30</option>
+                <option value="16:00">下午 4:00</option>
+                <option value="16:30">下午 4:30</option>
+                <option value="17:00">下午 5:00</option>
+                <option value="17:30">下午 5:30</option>
+                <option value="18:00">下午 6:00</option>
+                <option value="18:30">下午 6:30</option>
+                <option value="19:00">下午 7:00</option>
+                <option value="19:30">下午 7:30</option>
+                <option value="20:00">下午 8:00</option>
+                <option value="20:30">下午 8:30</option>
+                <option value="21:00">下午 9:00</option>
+                <option value="21:30">下午 9:30</option>
+                <option value="22:00">下午 10:00</option>
+                <option value="22:30">下午 10:30</option>
+                <option value="23:00">下午 11:00</option>
+                <option value="23:30">下午 11:30</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="return_date"><span data-zh>還車日期時間</span><span data-ja>返却日時</span></label>
+              <div class="subrow">
+                <input type="date" id="return_date" name="return_date" disabled>
+                <select id="return_time" name="return_time" disabled>
+                <option value="00:00">上午 12:00</option>
+                <option value="00:30">上午 12:30</option>
+                <option value="01:00">上午 1:00</option>
+                <option value="01:30">上午 1:30</option>
+                <option value="02:00">上午 2:00</option>
+                <option value="02:30">上午 2:30</option>
+                <option value="03:00">上午 3:00</option>
+                <option value="03:30">上午 3:30</option>
+                <option value="04:00">上午 4:00</option>
+                <option value="04:30">上午 4:30</option>
+                <option value="05:00">上午 5:00</option>
+                <option value="05:30">上午 5:30</option>
+                <option value="06:00">上午 6:00</option>
+                <option value="06:30">上午 6:30</option>
+                <option value="07:00">上午 7:00</option>
+                <option value="07:30">上午 7:30</option>
+                <option value="08:00">上午 8:00</option>
+                <option value="08:30">上午 8:30</option>
+                <option value="09:00">上午 9:00</option>
+                <option value="09:30">上午 9:30</option>
+                <option value="10:00">上午 10:00</option>
+                <option value="10:30">上午 10:30</option>
+                <option value="11:00">上午 11:00</option>
+                <option value="11:30">上午 11:30</option>
+                <option value="12:00">下午 12:00</option>
+                <option value="12:30">下午 12:30</option>
+                <option value="13:00">下午 1:00</option>
+                <option value="13:30">下午 1:30</option>
+                <option value="14:00">下午 2:00</option>
+                <option value="14:30">下午 2:30</option>
+                <option value="15:00">下午 3:00</option>
+                <option value="15:30">下午 3:30</option>
+                <option value="16:00">下午 4:00</option>
+                <option value="16:30">下午 4:30</option>
+                <option value="17:00">下午 5:00</option>
+                <option value="17:30">下午 5:30</option>
+                <option value="18:00">下午 6:00</option>
+                <option value="18:30">下午 6:30</option>
+                <option value="19:00">下午 7:00</option>
+                <option value="19:30">下午 7:30</option>
+                <option value="20:00">下午 8:00</option>
+                <option value="20:30">下午 8:30</option>
+                <option value="21:00">下午 9:00</option>
+                <option value="21:30">下午 9:30</option>
+                <option value="22:00">下午 10:00</option>
+                <option value="22:30">下午 10:30</option>
+                <option value="23:00">下午 11:00</option>
+                <option value="23:30">下午 11:30</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-row" id="charter-fields" style="display:none;">
+            <div class="field">
+              <label for="charter_start_date"><span data-zh>包車開始日期時間</span><span data-ja>貸切開始日時</span></label>
+              <div class="subrow">
+                <input type="date" id="charter_start_date" name="charter_start_date" disabled>
+                <select id="charter_start_time" name="charter_start_time" disabled>
+                <option value="00:00">上午 12:00</option>
+                <option value="00:30">上午 12:30</option>
+                <option value="01:00">上午 1:00</option>
+                <option value="01:30">上午 1:30</option>
+                <option value="02:00">上午 2:00</option>
+                <option value="02:30">上午 2:30</option>
+                <option value="03:00">上午 3:00</option>
+                <option value="03:30">上午 3:30</option>
+                <option value="04:00">上午 4:00</option>
+                <option value="04:30">上午 4:30</option>
+                <option value="05:00">上午 5:00</option>
+                <option value="05:30">上午 5:30</option>
+                <option value="06:00">上午 6:00</option>
+                <option value="06:30">上午 6:30</option>
+                <option value="07:00">上午 7:00</option>
+                <option value="07:30">上午 7:30</option>
+                <option value="08:00">上午 8:00</option>
+                <option value="08:30">上午 8:30</option>
+                <option value="09:00">上午 9:00</option>
+                <option value="09:30">上午 9:30</option>
+                <option value="10:00">上午 10:00</option>
+                <option value="10:30">上午 10:30</option>
+                <option value="11:00">上午 11:00</option>
+                <option value="11:30">上午 11:30</option>
+                <option value="12:00">下午 12:00</option>
+                <option value="12:30">下午 12:30</option>
+                <option value="13:00">下午 1:00</option>
+                <option value="13:30">下午 1:30</option>
+                <option value="14:00">下午 2:00</option>
+                <option value="14:30">下午 2:30</option>
+                <option value="15:00">下午 3:00</option>
+                <option value="15:30">下午 3:30</option>
+                <option value="16:00">下午 4:00</option>
+                <option value="16:30">下午 4:30</option>
+                <option value="17:00">下午 5:00</option>
+                <option value="17:30">下午 5:30</option>
+                <option value="18:00">下午 6:00</option>
+                <option value="18:30">下午 6:30</option>
+                <option value="19:00">下午 7:00</option>
+                <option value="19:30">下午 7:30</option>
+                <option value="20:00">下午 8:00</option>
+                <option value="20:30">下午 8:30</option>
+                <option value="21:00">下午 9:00</option>
+                <option value="21:30">下午 9:30</option>
+                <option value="22:00">下午 10:00</option>
+                <option value="22:30">下午 10:30</option>
+                <option value="23:00">下午 11:00</option>
+                <option value="23:30">下午 11:30</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="charter_end_date"><span data-zh>包車結束日期時間</span><span data-ja>貸切終了日時</span></label>
+              <div class="subrow">
+                <input type="date" id="charter_end_date" name="charter_end_date" disabled>
+                <select id="charter_end_time" name="charter_end_time" disabled>
+                <option value="00:00">上午 12:00</option>
+                <option value="00:30">上午 12:30</option>
+                <option value="01:00">上午 1:00</option>
+                <option value="01:30">上午 1:30</option>
+                <option value="02:00">上午 2:00</option>
+                <option value="02:30">上午 2:30</option>
+                <option value="03:00">上午 3:00</option>
+                <option value="03:30">上午 3:30</option>
+                <option value="04:00">上午 4:00</option>
+                <option value="04:30">上午 4:30</option>
+                <option value="05:00">上午 5:00</option>
+                <option value="05:30">上午 5:30</option>
+                <option value="06:00">上午 6:00</option>
+                <option value="06:30">上午 6:30</option>
+                <option value="07:00">上午 7:00</option>
+                <option value="07:30">上午 7:30</option>
+                <option value="08:00">上午 8:00</option>
+                <option value="08:30">上午 8:30</option>
+                <option value="09:00">上午 9:00</option>
+                <option value="09:30">上午 9:30</option>
+                <option value="10:00">上午 10:00</option>
+                <option value="10:30">上午 10:30</option>
+                <option value="11:00">上午 11:00</option>
+                <option value="11:30">上午 11:30</option>
+                <option value="12:00">下午 12:00</option>
+                <option value="12:30">下午 12:30</option>
+                <option value="13:00">下午 1:00</option>
+                <option value="13:30">下午 1:30</option>
+                <option value="14:00">下午 2:00</option>
+                <option value="14:30">下午 2:30</option>
+                <option value="15:00">下午 3:00</option>
+                <option value="15:30">下午 3:30</option>
+                <option value="16:00">下午 4:00</option>
+                <option value="16:30">下午 4:30</option>
+                <option value="17:00">下午 5:00</option>
+                <option value="17:30">下午 5:30</option>
+                <option value="18:00">下午 6:00</option>
+                <option value="18:30">下午 6:30</option>
+                <option value="19:00">下午 7:00</option>
+                <option value="19:30">下午 7:30</option>
+                <option value="20:00">下午 8:00</option>
+                <option value="20:30">下午 8:30</option>
+                <option value="21:00">下午 9:00</option>
+                <option value="21:30">下午 9:30</option>
+                <option value="22:00">下午 10:00</option>
+                <option value="22:30">下午 10:30</option>
+                <option value="23:00">下午 11:00</option>
+                <option value="23:30">下午 11:30</option>
+                </select>
+              </div>
+            </div>
           </div>
           <div class="field">
             <label for="message"><span data-zh>諮詢內容</span><span data-ja>お問い合わせ内容</span></label>
@@ -166,6 +400,8 @@
           <li><a href="about.html"><span data-zh>公司介紹</span><span data-ja>会社概要</span></a></li>
           <li><a href="properties.html"><span data-zh>物件情報</span><span data-ja>物件情報</span></a></li>
           <li><a href="immigration.html"><span data-zh>日本移民</span><span data-ja>日本移住</span></a></li>
+          <li><a href="car-rental.html"><span data-zh>租車服務</span><span data-ja>レンタカー</span></a></li>
+          <li><a href="charter-bus.html"><span data-zh>包車服務</span><span data-ja>貸切バス</span></a></li>
           <li><a href="faq.html"><span data-zh>常見問題</span><span data-ja>よくある質問</span></a></li>
         </ul>
       </div>

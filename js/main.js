@@ -43,6 +43,77 @@
   }
   initLang();
 
+  /* ---- Contact form: topic-dependent fields (real estate / car rental / charter bus) ---- */
+  var topicSelect = document.getElementById("topic");
+  var realestateFields = document.getElementById("realestate-fields");
+  var rentalFields = document.getElementById("rental-fields");
+  var charterFields = document.getElementById("charter-fields");
+
+  var TOPIC_MODES = {
+    "租車服務": "rental",
+    "包車諮詢": "charter"
+  };
+
+  function setTopicMode(mode) {
+    if (!realestateFields || !rentalFields || !charterFields) return;
+    realestateFields.style.display = mode === "realestate" ? "" : "none";
+    rentalFields.style.display = mode === "rental" ? "" : "none";
+    charterFields.style.display = mode === "charter" ? "" : "none";
+
+    var purpose = document.getElementById("purpose");
+    var budget = document.getElementById("budget");
+    var rentalIds = ["pickup_date", "pickup_time", "return_date", "return_time"];
+    var charterIds = ["charter_start_date", "charter_start_time", "charter_end_date", "charter_end_time"];
+
+    if (purpose) purpose.disabled = mode !== "realestate";
+    if (budget) budget.disabled = mode !== "realestate";
+    rentalIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.disabled = mode !== "rental";
+    });
+    charterIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.disabled = mode !== "charter";
+    });
+  }
+
+  function modeForTopic(value) {
+    return TOPIC_MODES[value] || "realestate";
+  }
+
+  if (topicSelect) {
+    topicSelect.addEventListener("change", function () {
+      setTopicMode(modeForTopic(topicSelect.value));
+    });
+
+    /* Pre-fill from a link like contact.html?topic=租車服務&car=本田+N-BOX
+       or contact.html?topic=包車諮詢 */
+    var params = new URLSearchParams(window.location.search);
+    var topicParam = params.get("topic");
+    if (topicParam) {
+      for (var i = 0; i < topicSelect.options.length; i++) {
+        if (topicSelect.options[i].value === topicParam) {
+          topicSelect.value = topicParam;
+          break;
+        }
+      }
+    }
+    setTopicMode(modeForTopic(topicSelect.value));
+
+    var carParam = params.get("car");
+    var messageEl = document.getElementById("message");
+    if (carParam && messageEl && !messageEl.value) {
+      messageEl.value = "想詢問車款：" + carParam + "\n借車日期時間：\n還車日期時間：\n";
+    }
+  }
+
+  /* Default the time selects to a sensible value (09:00) so they aren't
+     stuck on 12:00am when a user never touches them. */
+  ["pickup_time", "return_time", "charter_start_time", "charter_end_time"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.value = "09:00";
+  });
+
   /* ---- Contact form: sends directly, no email client needed ----
      Uses Web3Forms (https://web3forms.com) — a free, keyless-signup
      service for static sites. The access key below must be replaced

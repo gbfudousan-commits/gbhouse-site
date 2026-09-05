@@ -21,6 +21,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://gbfudousan-commits.github.io/gbhouse-site/car-rental.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gbfudousan-commits.github.io/gbhouse-site/charter-bus.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://gbfudousan-commits.github.io/gbhouse-site/faq.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
