@@ -48,22 +48,26 @@
   var realestateFields = document.getElementById("realestate-fields");
   var rentalFields = document.getElementById("rental-fields");
   var charterFields = document.getElementById("charter-fields");
+  var studyFields = document.getElementById("study-fields");
 
   var TOPIC_MODES = {
     "租車服務": "rental",
-    "包車諮詢": "charter"
+    "包車諮詢": "charter",
+    "日本留學": "study"
   };
 
   function setTopicMode(mode) {
-    if (!realestateFields || !rentalFields || !charterFields) return;
+    if (!realestateFields || !rentalFields || !charterFields || !studyFields) return;
     realestateFields.style.display = mode === "realestate" ? "" : "none";
     rentalFields.style.display = mode === "rental" ? "" : "none";
     charterFields.style.display = mode === "charter" ? "" : "none";
+    studyFields.style.display = mode === "study" ? "" : "none";
 
     var purpose = document.getElementById("purpose");
     var budget = document.getElementById("budget");
     var rentalIds = ["pickup_date", "pickup_time", "return_date", "return_time"];
     var charterIds = ["charter_start_date", "charter_start_time", "charter_end_date", "charter_end_time"];
+    var studyIds = ["study_region", "study_type", "study_intake"];
 
     if (purpose) purpose.disabled = mode !== "realestate";
     if (budget) budget.disabled = mode !== "realestate";
@@ -74,6 +78,10 @@
     charterIds.forEach(function (id) {
       var el = document.getElementById(id);
       if (el) el.disabled = mode !== "charter";
+    });
+    studyIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.disabled = mode !== "study";
     });
   }
 
@@ -104,6 +112,31 @@
     var messageEl = document.getElementById("message");
     if (carParam && messageEl && !messageEl.value) {
       messageEl.value = "想詢問車款：" + carParam + "\n借車日期時間：\n還車日期時間：\n";
+    }
+
+    /* Pre-fill study-abroad region / school type from a link like
+       study-abroad.html's region chips or school-type cards:
+       contact.html?topic=日本留學&region=關東地區（含東京）
+       contact.html?topic=日本留學&stype=語言學校（日本語教育） */
+    var regionParam = params.get("region");
+    var studyRegionEl = document.getElementById("study_region");
+    if (regionParam && studyRegionEl) {
+      for (var r = 0; r < studyRegionEl.options.length; r++) {
+        if (studyRegionEl.options[r].value === regionParam) {
+          studyRegionEl.value = regionParam;
+          break;
+        }
+      }
+    }
+    var stypeParam = params.get("stype");
+    var studyTypeEl = document.getElementById("study_type");
+    if (stypeParam && studyTypeEl) {
+      for (var s = 0; s < studyTypeEl.options.length; s++) {
+        if (studyTypeEl.options[s].value === stypeParam) {
+          studyTypeEl.value = stypeParam;
+          break;
+        }
+      }
     }
   }
 
