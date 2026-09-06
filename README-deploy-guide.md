@@ -1,7 +1,15 @@
-# GB商事合同会社 官網 — 部署說明（第三版）
+# GB商事合同会社 官網 — 部署說明（第四版）
 
 這是一個純靜態網站（沒有資料庫、沒有後端），電腦上直接雙擊 `index.html` 就能離線瀏覽。
-目前已經上線在 GitHub Pages：`https://gbfudousan-commits.github.io/gbhouse-site/`
+目前已經上線，正式網址：`https://gbhouse.co/`（原本的 GitHub Pages 網址 `gbfudousan-commits.github.io/gbhouse-site/` 也還能連到同一個網站，但對外請一律使用 `gbhouse.co`）
+
+---
+
+## Google Analytics 4（查看訪客數據）
+
+✅ **已完成**：九個頁面都已埋好追蹤程式碼，評估ID `G-TK370BB6TW` 已經填入，
+上傳這次的檔案之後就會開始收集數據，登入 https://analytics.google.com 即可查看
+今天/本月訪客數、訪客所在國家/城市等統計。剛裝好通常要等 24-48 小時才會開始有完整數據。
 
 ---
 
@@ -25,32 +33,26 @@
 
 ---
 
-## 網址可以變短嗎？（GitHub Pages 網址說明）
+## 網址已經是自訂網域了
 
-目前上線的網址是：`https://gbfudousan-commits.github.io/gbhouse-site/`
+✅ **已完成**：`https://gbhouse.co/` 已經是正式上線的網址，跟 GitHub Pages 綁定完成。
+之後所有對外的連結、名片、廣告都請用 `gbhouse.co`，不要再用 `gbfudousan-commits.github.io/gbhouse-site/`
+那個舊網址（雖然它還能連到同一個網站，但正式對外只用一個網址，SEO效果比較集中）。
 
-這是 GitHub Pages 的規則：**帳號名稱.github.io/儲存庫名稱/**，帳號名稱跟斜線後面
-那段沒辦法拿掉，但有兩個方法可以讓網址變短、變好記：
+（下面留著當初申請自訂網域的步驟紀錄，供之後參考）
 
-**方法一：把儲存庫名稱改短**
-目前儲存庫叫 `gbhouse-site`，如果改名成比較短的，例如 `gb`，網址就會變成
-`https://gbfudousan-commits.github.io/gb/`，短一點，但還是會有那一段路徑，
-無法完全消除。到 repository 的 **Settings → 最上面的 Repository name** 就能改名，
-改名後幾分鐘內生效，原本的網址也會自動轉過去一段時間，不用擔心舊連結馬上失效。
+<details>
+<summary>點此展開：當初申請自訂網域的步驟</summary>
 
-**方法二：買一個自己的網域（最理想、可以完全客製）**
-例如買 `gbfudousan.com` 或 `gb-house.jp`，設定完成後網址就會是
-`https://gbfudousan.com`，又短又專業，是不動產同業網站常見的做法。
-步驟：
+這是 GitHub Pages 的規則：**帳號名稱.github.io/儲存庫名稱/**，若不使用自訂網域，
+帳號名稱跟斜線後面那段沒辦法拿掉。申請自訂網域的方式：
 1. 到網域註冊商（例如 Namecheap、GoDaddy，或台灣的 GANDI、name.com）購買網域，
    一年費用大約台幣400–1000元不等
 2. 到該網域的 DNS 設定，新增一筆 CNAME 紀錄，指向 `gbfudousan-commits.github.io`
 3. 回到 GitHub repository 的 **Settings → Pages → Custom domain**，填入您買的網域，儲存
 4. 等待DNS生效（通常10分鐘到幾小時），之後網址就會變成您自己的網域
 
-如果只是想要「方便分享」而不是真的改網址，也可以用免費短網址工具（例如
-`https://reurl.cc` 或 `https://s.gpp.tw`）把現在的網址包裝成一個短連結，
-放在名片或LINE訊息裡使用，但瀏覽器網址列還是會顯示原本的完整網址。
+</details>
 
 ---
 
@@ -77,7 +79,7 @@
 1. 到 https://www.chatbase.co 註冊一個免費帳號
 2. 進入後點「New Agent」（或類似的新增機器人按鈕）
 3. 到「資料來源 / Data Sources」，選擇貼上網址（Website / Link），把您的網站網址填入
-   （例如 `https://gbfudousan-commits.github.io/gbhouse-site/`），讓它自動讀取全站內容；
+   （例如 `https://gbhouse.co/`），讓它自動讀取全站內容；
    也可以額外把常見問題頁面的內容貼進去，訓練得更準確
 4. 到「Instructions / Persona」設定機器人的說話方式，建議寫類似：
    > 你是GB商事合同会社的中文客服助理，親切、專業，主要協助大阪不動產買賣、租賃、
@@ -114,6 +116,12 @@
 ---
 
 ## 這一版更新了什麼
+
+0. **修正三個問題**：
+   - 重新接上 Google Analytics 4 追蹤程式碼（先前不知為何整個消失了），這次用您提供的評估ID `G-TK370BB6TW` 直接接好
+   - `robots.txt`、`sitemap.xml` 的網址從舊的 GitHub Pages 網址改成正式網域 `gbhouse.co`，並在九個頁面都加上「canonical標籤」（技術上用來告訴搜尋引擎「這個網址才是正式版本」，避免新舊兩個網址被當成重複內容分散SEO效果）
+   - 修正 `properties.html` 裡殘留的「SUUMO」文字（先前已經全站換成at home，這裡漏掉一處）
+   - 首頁、公司介紹頁的結構化資料（JSON-LD）裡的網址也一併從舊網址改成 `gbhouse.co`
 
 0. **SEO／GEO（AI搜尋優化）第一階段**：以「大阪台灣人房仲、日本買房中文服務」為核心，補齊技術地基與內容：
    - 新增 `robots.txt`、`sitemap.xml`，讓 Google 與 ChatGPT／Perplexity 等AI的爬蟲可以正常讀取全站頁面
