@@ -28,7 +28,32 @@
       btn.classList.toggle("active", btn.dataset.lang === lang);
       btn.setAttribute("aria-pressed", btn.dataset.lang === lang ? "true" : "false");
     });
+    swapAttrs(lang);
     try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+  }
+
+  /* Swap non-span content (title, meta description, alt, aria-label,
+     placeholder, <option> text) between zh (original) and ja. Originals are
+     cached on first run; option `value`s are never changed. */
+  function swapAttrs(lang) {
+    var ja = lang === "ja";
+    var t = document.querySelector("title[data-ja-text]");
+    if (t) {
+      if (!t.dataset.zhText) t.dataset.zhText = t.textContent;
+      document.title = ja ? t.dataset.jaText : t.dataset.zhText;
+    }
+    ["alt", "aria-label", "placeholder", "content"].forEach(function (a) {
+      var key = "data-ja-" + a;
+      document.querySelectorAll("[" + key + "]").forEach(function (el) {
+        var zhKey = "data-zh-" + a;
+        if (!el.hasAttribute(zhKey)) el.setAttribute(zhKey, el.getAttribute(a) || "");
+        el.setAttribute(a, ja ? el.getAttribute(key) : el.getAttribute(zhKey));
+      });
+    });
+    document.querySelectorAll("option[data-ja-text]").forEach(function (o) {
+      if (!o.dataset.zhText) o.dataset.zhText = o.textContent;
+      o.textContent = ja ? o.dataset.jaText : o.dataset.zhText;
+    });
   }
 
   function initLang() {

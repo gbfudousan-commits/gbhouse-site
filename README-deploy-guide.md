@@ -185,3 +185,10 @@ gbhouse-site/
 
 網站右上角有「中文／日本語」切換鈕，所有頁面文字都準備了中日雙語版本，
 切換後會記住您的選擇（下次開啟其他頁面也會維持同一語言）。
+
+## 更新紀錄（v5）日文版全面補譯
+- 租車頁：價格「日圓/天」→「円/日」、車名、規格、特色、圖說全部補日文
+- 包車頁：車型名稱（海獅／考斯特）補日文；「名乗り」更正為「人乗り」
+- 聯絡表單：下拉選單選項、時間、地區、提示文字（placeholder）切換為日文（送出值仍為中文，方便收信閱讀）
+- 頁面標題、meta description、圖片 alt、aria-label 隨語言切換（js/main.js 的 swapAttrs）
+- 新增文字時：選單/圖片請加 data-ja-text / data-ja-alt / data-ja-placeholder / data-ja-aria-label 屬性
