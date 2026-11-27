@@ -91,6 +91,7 @@ html[lang="ja"] [data-ja] { display: inline; }
   padding: 6px 14px;
   border-radius: 999px;
   cursor: pointer;
+  white-space: nowrap;
   color: var(--stone);
 }
 .lang-switch button.active {
